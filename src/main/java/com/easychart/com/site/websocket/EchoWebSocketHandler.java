@@ -7,7 +7,6 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import com.alibaba.fastjson.JSON;
 import com.easychart.com.site.service.EchoService;
 
 public class EchoWebSocketHandler extends TextWebSocketHandler {
