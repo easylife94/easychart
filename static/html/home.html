@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/css/main.css"/>
+    <style type="text/css">
+    body{
+		background-color: gray;
+    }
+   	.chart-window{
+		width: 600px;
+		height: 400px;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+    .chart-content{
+    	height: 350px;
+    	border: solid 3px black;
+    	background-color: white;
+    }
+    .chart-input{
+    	width: 100%;
+    }
+    </style>
+</head>
+<body>
+
+<div class="chart-window">
+	<div class="chart-content">
+	</div>
+	
+	<input class="chart-input" type="text" name="" placeholder="说点什么..."/>
+	
+</div>
+    
+</body>
+<script src="/js/jquery/2.0.3/jquery.min.js" ></script>
+<script src="/js/jquery/jquery.cookie.js" ></script>
+<script src="/js/jquery/jquery.form.js" ></script>
+<script src="/js/JSON/JSON.js" ></script>
+<script src="/js/seajs/sea.js" ></script>
+
+<script type="text/javascript">
+seajs.config({
+	  base: "../",//设置js为根目录
+	  alias: {
+	    "$": "/jquery/2.0.3/jquery.min.js",
+	    "cookie":"/jquery/jquery.cookie.js"
+	  }
+	});
+seajs.use("/js/modules/main/home"); 
+</script>
+
+</html>
