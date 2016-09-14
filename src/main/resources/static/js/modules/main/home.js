@@ -1,10 +1,10 @@
 define(function(require,exports,module){
 	
 	var Logitch = require("../logitch/logitch");
+	var MessageFrame = require("../message-frame/message-frame");
 	
-	console.log("home.js ");
-	
-	var chartSocketUrl = "ws://localhost:8080/ws/chart";
+	var messageFrame = new MessageFrame();
+	var chartSocketUrl = "ws://"+window.location.host+"/ws/chart";
 	
 	//判断当前浏览器是否支持WebSocket  
     if ('WebSocket' in window) {  
@@ -21,12 +21,15 @@ define(function(require,exports,module){
   
     //连接成功建立的回调方法  
     websocket.onopen = function (event) {  
-        setMessageInnerHTML("open");  
+        setMessageInnerHTML("open");
+        
     }  
   
     //接收到消息的回调方法  
     websocket.onmessage = function (event) {  
-        setMessageInnerHTML(event.data);  
+    	var message = eval("("+event.data+")");
+    	console.log(message);
+        setMessageInnerHTML(messageFrame.html(message.content,message.sender,message.type,message.from));
     }  
   
     //连接关闭的回调方法  
@@ -41,7 +44,7 @@ define(function(require,exports,module){
   
     //将消息显示在网页上  
     function setMessageInnerHTML(innerHTML) {
-    	$(".chart-content").html(innerHTML+"<br/>");
+    	$(innerHTML).appendTo($(".chart-content"));
     }  
   
     //关闭连接  
@@ -52,14 +55,16 @@ define(function(require,exports,module){
     //发送消息  
     function send() {  
         var message =$(".chart-input").val();  
-        websocket.send(message);  
+        websocket.send(message);
+        setMessageInnerHTML(messageFrame.html(message,"我",1,"me"));
     }  
 	
     $(".chart-input").on("keypress",function(e){
     	if(e.keyCode == 13){
     		var message =$(".chart-input").val();  
+    		setMessageInnerHTML(messageFrame.html(message,"我",1,"me"));
             websocket.send(message);
-            setMessageInnerHTML("我："+message);
+            $(".chart-input").val("");
     	}
     });
     
