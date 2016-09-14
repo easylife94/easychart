@@ -102,7 +102,7 @@ public class ChartWebSocket {
         		sendMessageJSON.element("from", "sys");
         		sendMessageJSON.element("type", "1");
         		sendMessageJSON.element("content", message);
-        		sendMessageJSON.element("sender", alias.getName());
+        		sendMessageJSON.element("sender", "系统");
         		
         		socket.sendMessage(sendMessageJSON.toString());
         }

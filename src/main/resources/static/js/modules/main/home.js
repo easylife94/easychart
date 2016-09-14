@@ -2,8 +2,12 @@ define(function(require,exports,module){
 	
 	var Logitch = require("../logitch/logitch");
 	var MessageFrame = require("../message-frame/message-frame");
+	var Notification = require("../window-notification/window-notification");
 	
 	var messageFrame = new MessageFrame();
+	var notification = new Notification();
+	
+	
 	var chartSocketUrl = "ws://"+window.location.host+"/ws/chart";
 	
 	//判断当前浏览器是否支持WebSocket  
@@ -28,8 +32,11 @@ define(function(require,exports,module){
     //接收到消息的回调方法  
     websocket.onmessage = function (event) {  
     	var message = eval("("+event.data+")");
-    	console.log(message);
         setMessageInnerHTML(messageFrame.html(message.content,message.sender,message.type,message.from));
+    
+        if(isWindowMin()){//窗口最小化则在桌面弹出
+        	notification.alert("easychart 【新消息】",message.sender+"发来："+message.content);
+        }
     }  
   
     //连接关闭的回调方法  
@@ -51,14 +58,8 @@ define(function(require,exports,module){
     function closeWebSocket() {  
         websocket.close();  
     }  
-  
-    //发送消息  
-    function send() {  
-        var message =$(".chart-input").val();  
-        websocket.send(message);
-        setMessageInnerHTML(messageFrame.html(message,"我",1,"me"));
-    }  
 	
+    
     $(".chart-input").on("keypress",function(e){
     	if(e.keyCode == 13){
     		var message =$(".chart-input").val();  
@@ -69,4 +70,28 @@ define(function(require,exports,module){
     });
     
     
+    function isWindowMin() {//窗口是否最小化
+		var isMin = false;
+		
+		if (window.outerWidth != undefined) {
+			isMin = window.outerWidth <= 160 && window.outerHeight <= 27;
+		}else {
+			isMin = window.screenTop < -30000 && window.screenLeft < -30000;
+		}
+		
+		return isMin;
+	}
+    
+    
+    setTimeout(function(){console.log($(window).height())},2000);
+ /* 
+    function isWindowUnfoucs(){//窗口
+    	
+    }
+    $("body").blur(function(e) {
+    	console.log("窗口失去焦点");
+    });
+    $("body").focus(function(){
+    	console.log("窗口获得焦点");
+    })*/
 });

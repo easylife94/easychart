@@ -1,3 +1,43 @@
 .chart-window{
-	text-align: center;
-}
+		width: 600px;
+		height: 400px;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+    .chart-content{
+    	
+    	height: 350px;
+    	border: solid 3px black;
+    	background-color: white;
+    	overflow: scroll;
+    }
+    .chart-input{
+    	width: 100%;
+    }
+    .message-frame{
+    	text-align: left;
+    	float: left;
+    	width: 100%;
+    }
+    .message-frame-sender{
+    	width: auto;
+    	float: left;
+    	margin: 5px 10px 5px 10px;
+    }
+    .message-frame-content{
+    	width: auto;
+    	float: left;
+    	padding: 5px;
+    	color: white;
+    	margin:5px 0 5px 0;
+    	background-color: blue;
+    	
+    }
+    .sys-message-frame{
+    	margin: 5px 0 5px 0;
+    }
+    .fr{
+    	float: right;
+    	text-align: right;
+    }

@@ -6,7 +6,7 @@ define(function(required,exports,module){
 	module.exports = CONF;
 	
 	//日志开关
-	CONF.isClose = true;
+	CONF.isClose = false;
 	
 	//日志输出级别
 	CONF.level = "info";
