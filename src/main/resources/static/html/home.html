@@ -3,73 +3,36 @@
 <head>
     <title>简·聊</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="/css/main.css"/>
-    <style type="text/css">
-    body{
-		background-color: gray;
-    }
-   	.chart-window{
-		width: 600px;
-		height: 400px;
-		margin-left: auto;
-		margin-right: auto;
-		text-align: center;
-	}
-    .chart-content{
-    	
-    	height: 350px;
-    	border: solid 3px black;
-    	background-color: white;
-    	overflow: scroll;
-    }
-    .chart-input{
-    	width: 100%;
-    }
-    .message-frame{
-    	text-align: left;
-    	float: left;
-    	width: 100%;
-    }
-    .message-frame-sender{
-    	width: auto;
-    	float: left;
-    	margin: 5px 10px 5px 10px;
-    }
-    .message-frame-content{
-    	width: auto;
-    	float: left;
-    	padding: 5px;
-    	color: white;
-    	margin:5px 0 5px 0;
-    	background-color: blue;
-    	
-    }
-    .sys-message-frame{
-    	margin: 5px 0 5px 0;
-    }
-    .fr{
-    	float: right;
-    	text-align: right;
-    }
-    </style>
+    <link href="/ui/flat-ui/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/ui/flat-ui/css/flat-ui.css" rel="stylesheet">
+    
+    <link href="/css/main.css" rel="stylesheet">
 </head>
 <body>
 
 <div class="chart-window">
-	<div class="chart-content">
-	</div>
+	<div class="chart-content"></div>
 	
 	<input class="chart-input" type="text" name="" placeholder="说点什么..."/>
+</div>
+
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-6"></div>
+	<div class="col-md-3"></div>
+	
 	
 </div>
     
 </body>
 <script src="/js/jquery/2.0.3/jquery.min.js" ></script>
+<script src="/ui/flat-ui/js/flat-ui.min.js"></script>
 <script src="/js/jquery/jquery.cookie.js" ></script>
 <script src="/js/jquery/jquery.form.js" ></script>
 <script src="/js/JSON/JSON.js" ></script>
 <script src="/js/seajs/sea.js" ></script>
-
+<!-- 
+<script src="/ui/flat-ui/js/vendor/jquery.min.js"></script> -->
 <script type="text/javascript">
 seajs.config({
 	  base: "../",//设置js为根目录
