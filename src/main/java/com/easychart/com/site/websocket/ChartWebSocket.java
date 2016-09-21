@@ -19,6 +19,7 @@ import net.sf.json.JSONObject;
 
 import org.springframework.stereotype.Component;
 
+import com.easychart.com.site.bot.Robot;
 import com.easychart.com.site.common.Alias;
 
 @ServerEndpoint("/ws/chart")  
@@ -74,8 +75,16 @@ public class ChartWebSocket {
     }  
   
     @OnMessage  
-    public void onMessage (String message, Session session) throws IOException {  
-        sendOthersMessage(message);
+    public void onMessage (String message, Session session) throws IOException { 
+    	
+    	
+    	if(message.contains("@bot")){
+    		String response = Robot.response(message.replace("@bot", ""));
+    		sendLoafBotMessage(response);
+    	}else{
+    		sendOthersMessage(message);
+    	}
+    	
     }  
     
     
@@ -106,7 +115,18 @@ public class ChartWebSocket {
         		
         		socket.sendMessage(sendMessageJSON.toString());
         }
-    }  
+    }
+    public void sendLoafBotMessage (String message) throws IOException {  
+    	
+		JSONObject sendMessageJSON = new JSONObject();
+		sendMessageJSON.element("from", "bot");
+		sendMessageJSON.element("type", "1");
+		sendMessageJSON.element("content", message);
+		sendMessageJSON.element("sender", "鸡气人");
+		
+		this.sendMessage(sendMessageJSON.toString());
+        
+    }
     public void sendOthersMessage (String message) throws IOException {  
     	 // 群发消息  
         Set<String> keys =  webSocketMap.keySet();
