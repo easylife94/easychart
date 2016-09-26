@@ -1,7 +1,4 @@
-body{
-		background-color: gray;
-    }
-   	.chart-window{
+.chart-window{
 		width: 600px;
 		height: 400px;
 		margin-left: auto;
