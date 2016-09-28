@@ -14,7 +14,6 @@ define(function(require,exports,module){
 	module.exports = MessageFrame;
 	
 	MessageFrame.prototype.html = function(message,sender,type,from){
-		console.log(this);
 		var html = "<div><div class=\"message-frame\"><div class=\"message-frame-sender\"></div><div class=\"message-frame-content\"></div></div><div>";
 		var _JOM = $(html);//jquery object model
 		
@@ -25,7 +24,7 @@ define(function(require,exports,module){
 			return _JOM.html();
 		}
 			
-		_JOM.find(".message-frame-sender").text(sender==null||sender==""?"游客":sender);				
+		_JOM.find(".message-frame-sender").html(sender==null||sender==""?"游客":sender);				
 		
 		if(type!=null && typeof type == "number"){
 			switch(type){
@@ -50,7 +49,7 @@ define(function(require,exports,module){
 	}
 	
 	function text(_JOM,message){
-		_JOM.find(".message-frame-content").text(message);
+		_JOM.find(".message-frame-content").html(message);
 	}
 	
 	function image(_JOM,messgae){

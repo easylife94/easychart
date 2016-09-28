@@ -1,4 +1,7 @@
-.chart-window{
+body{
+		background-color: gray;
+    }
+   	.chart-window{
 		width: 600px;
 		height: 400px;
 		margin-left: auto;
@@ -6,11 +9,10 @@
 		text-align: center;
 	}
     .chart-content{
-    	
     	height: 350px;
-    	border: solid 3px black;
     	background-color: white;
-    	overflow: scroll;
+    	overflow: auto;
+    	border-radius: 4px;
     }
     .chart-input{
     	width: 100%;
@@ -31,7 +33,21 @@
     	padding: 5px;
     	color: white;
     	margin:5px 0 5px 0;
-    	background-color: blue;
+    	background-color: gray;
+    	border-radius: 4px;
+    	min-width: 30px;
+    	
+    }
+    .message-frame-content-arrow{
+    	position:absolute;
+		top:5px;
+		right:-16px; /* 圆角的位置需要细心调试哦 */
+		width:0;
+		height:0;
+		font-size:0;
+		border:solid 8px;
+		background-color: gray;
+		border-color:gray;
     	
     }
     .sys-message-frame{
@@ -40,4 +56,22 @@
     .fr{
     	float: right;
     	text-align: right;
+    }
+    .chat-bar{
+    	width: 100%;
+    	padding:2px 0px 2px 0px;
+    }
+    .chat-editor{
+    	background-color: white;
+    	width: 100%;
+    	height: 150px;
+    	padding:5px 10px 5px 10px;
+    	overflow: auto;
+    	border-radius: 4px;
+    }
+    .placeholder{
+    	
+    }
+    .send-btn{
+    	float: right;
     }
