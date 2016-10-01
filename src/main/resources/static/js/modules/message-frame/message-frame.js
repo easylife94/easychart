@@ -45,6 +45,8 @@ define(function(require,exports,module){
 			_JOM.find(".message-frame-sender").addClass("fr");//fr  float:right
 			_JOM.find(".message-frame-content").addClass("fr");
 		}
+		
+		
 		return _JOM.html();
 	}
 	
