@@ -9,7 +9,9 @@ define(function(require,exports,module){
 	 }
 	
 	var WindowNotification = function(){
-	
+		
+		
+		
 		
 	};
 	
@@ -75,7 +77,5 @@ define(function(require,exports,module){
              }, 500);  
          }  
 	}
-	
-	
 	
 });

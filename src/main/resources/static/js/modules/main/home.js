@@ -3,20 +3,12 @@ define(function(require,exports,module){
 	var Logitch = require("../logitch/logitch");
 	var MessageFrame = require("../message-frame/message-frame");
 	var Notification = require("../window-notification/window-notification");
-<<<<<<< Updated upstream
 	var ChatEditor = require("../chat-editor/chat-editor");
 	
 	
 	var messageFrame = new MessageFrame();
 	var notification = new Notification();
 	var chatEditor = new ChatEditor();
-=======
-	var PromptMusic = require("../prompt/prompt-music");
-	
-	var messageFrame = new MessageFrame();
-	var notification = new Notification();
-	var protmptMusic = new PromptMusic();
->>>>>>> Stashed changes
 	
 	var chartSocketUrl = "ws://"+window.location.host+"/ws/chart";
 	
@@ -41,18 +33,11 @@ define(function(require,exports,module){
   
     //接收到消息的回调方法  
     websocket.onmessage = function (event) {  
-    		var message = eval("("+event.data+")");
-    		var  auto = isChartContentAutoToBottom();
+    	var message = eval("("+event.data+")");
         setMessageInnerHTML(messageFrame.html(message.content,message.sender,message.type,message.from));
-       //当处于底部时自动滚动
-        if(auto){
-        		scrollChartContentBottom();
-        }
-        
+    
         if(isWindowMin()){//窗口最小化则在桌面弹出
-        		console.log("最小化啦");
-        		notification.alert("easychart 【新消息】",message.sender+"发来："+message.content);
-        		protmptMusic.sound();
+        	notification.alert("easychart 【新消息】",message.sender+"发来："+message.content);
         }
     };  
   
@@ -69,14 +54,13 @@ define(function(require,exports,module){
   
     //将消息显示在网页上  
     function setMessageInnerHTML(innerHTML) {
-    		$(innerHTML).appendTo($(".chart-content"));
+    	$(innerHTML).appendTo($(".chart-content"));
     }  
-   
+  
     //关闭连接  
     function closeWebSocket() {  
         websocket.close();  
     }  
-<<<<<<< Updated upstream
  
     $(".chat-editor").on("keypress",function(e){
     	if(e.keyCode == 13){
@@ -88,42 +72,19 @@ define(function(require,exports,module){
             $(this).empty();
             e.preventDefault();
     	}
-=======
-	
-    
-    $(".chart-input").on("keypress",function(e){
-	    	if(e.keyCode == 13){
-	    		var message =$(".chart-input").val();
-	    		if(message != ""){
-	    			setMessageInnerHTML(messageFrame.html(message,"我",1,"me"));
-	    			websocket.send(message);
-	    			$(".chart-input").val("");
-	    			scrollChartContentBottom();
-	    		}
-	    	}
->>>>>>> Stashed changes
     });
     
     function isWindowMin() {//窗口是否最小化
 		var isMin = false;
 		if (window.outerWidth != undefined) {
-			isMin = window.outerWidth <= 10 && window.outerHeight <= 10;
+			isMin = window.outerWidth <= 160 && window.outerHeight <= 27;
 		}else {
 			isMin = window.screenTop < -30000 && window.screenLeft < -30000;
 		}
 		return isMin;
 	}
-<<<<<<< Updated upstream
     
     $(".send-setting li").each(function(){
     	
     });
-=======
-    function scrollChartContentBottom(){
-	 	var div = document.getElementById("chart-content");
-	 	
-	    div.scrollTop = div.scrollHeight;
-	}
-
->>>>>>> Stashed changes
 });
