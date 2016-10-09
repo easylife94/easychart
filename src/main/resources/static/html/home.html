@@ -18,14 +18,16 @@
 	<input class="chart-input" type="text" name="" placeholder="说点什么..."/>
 </div> -->
 <!-- chart-window -->
-<div class="row" style="height: 30px;"></div>
+<div class="row" style="height: 5px;"></div>
 <div class="row">
 	<div class="col-md-3"></div>
 	<div class="col-md-6">
-		<div class="chart-content">
-			<div class="col-md-12 chat-room-status">
-				<span class="user-num"><i class="fui-user"></i><i class="num"></i></span>
-			</div>
+		<div class="col-md-12 chat-room-status">
+			<span class="user-num"><i class="fui-user"></i><i class="num"></i></span>
+			<span class="prompt-music"><i class="fui-volume"></i></span>
+		</div>
+		<div class="col-md-12 chart-content">
+			
 		</div>
 	</div>
 	<div class="col-md-3"></div>
@@ -40,6 +42,16 @@
 			  	<ul class="dropdown-menu dropdown-menu-inverse" role="menu"></ul>
 			  <button type="button" class="btn btn-default"><span class="fui-time"></span></button>
 			</div>
+			<div class="btn-group send-btn">
+			  <button type="button" class="btn btn-primary">发送</button>
+			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			    <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu pull-right send-setting" role="menu">
+			    <li class="active"><a href="#" >Enter 发送</a></li>
+			    <li><a href="#">Alt + Enter 发送</a></li>
+			  </ul>
+			</div>
 		</div>
 		<div class="chat-editor" contenteditable="true"  data-placeholder="说点什么..."></div>
 	</div>
@@ -48,16 +60,7 @@
 <div class="row">
 	<div class="col-md-3"></div>
 	<div class="col-md-6">
-		<div class="btn-group send-btn">
-		  <button type="button" class="btn btn-primary">发送</button>
-		  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-		    <span class="caret"></span>
-		  </button>
-		  <ul class="dropdown-menu pull-right send-setting" role="menu">
-		    <li class="active"><a href="#" >Enter 发送</a></li>
-		    <li><a href="#">Alt + Enter 发送</a></li>
-		  </ul>
-		</div>
+		
 	</div>
 	<div class="col-md-3"></div>
 </div>  

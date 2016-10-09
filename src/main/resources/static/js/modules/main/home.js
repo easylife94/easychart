@@ -4,12 +4,13 @@ define(function(require,exports,module){
 	var MessageFrame = require("../message-frame/message-frame");
 	var Notification = require("../window-notification/window-notification");
 	var ChatEditor = require("../chat-editor/chat-editor");
+	var PromptMusic = require("../prompt/prompt-music.js");
 	
 	
 	var messageFrame = new MessageFrame();
 	var notification = new Notification();
 	var chatEditor = new ChatEditor();
-	
+	var promptMusic = new PromptMusic();
 	var chartSocketUrl = "ws://"+window.location.host+"/ws/chart";
 	
 	//判断当前浏览器是否支持WebSocket  
@@ -35,9 +36,9 @@ define(function(require,exports,module){
     websocket.onmessage = function (event) {  
     	var message = eval("("+event.data+")");
         setMessageInnerHTML(messageFrame.html(message.content,message.sender,message.type,message.from));
-    
+        promptMusic.sound();
         if(isWindowMin()){//窗口最小化则在桌面弹出
-        	notification.alert("easychart 【新消息】",message.sender+"发来："+message.content);
+        	  notification.alert("easychart 【新消息】",message.sender+"发来："+message.content);
         }
     };  
   

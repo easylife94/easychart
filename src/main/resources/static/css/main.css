@@ -13,6 +13,7 @@ body{
     	background-color: white;
     	overflow: auto;
     	border-radius: 4px;
+    	padding: 0;
     }
     .chart-input{
     	width: 100%;
@@ -75,3 +76,12 @@ body{
     .send-btn{
     	float: right;
     }
+    .prompt-music{
+    float: right;
+    }
+     .prompt-music:hover{
+     cursor: pointer;
+     }
+     .chat-room-status{
+     color: white;
+     }
