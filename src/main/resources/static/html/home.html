@@ -55,8 +55,11 @@
 		</div>
 		<div class="chat-editor" contenteditable="true"  data-placeholder="说点什么...">
 		</div>
-		<div class="bootstrap-switch-square reciever-switch">
-           <input type="checkbox" checked data-toggle="switch" id="reciever-switch" data-on-text="<span class='fui-user'></span>" data-off-text="<span class='font-ali font-ali-bot'></span>" />
+		<div class="bootstrap-switch-square reciever-switch" title="切换发送对象" data-placement="bottom" data-toggle="tooltip">
+           <input type="checkbox" id="reciever-switch" 
+           		checked data-toggle="switch" 
+           		data-on-text="<span class='fui-user'></span>" 
+           		data-off-text="<span class='font-ali font-ali-bot'></span>"/>
         </div>
 	</div>
 	<div class="col-md-3"></div>
@@ -81,6 +84,7 @@
 //Switches
 if ($('[data-toggle="switch"]').length) {
   $('[data-toggle="switch"]').bootstrapSwitch();
+  $('[data-toggle=tooltip]').tooltip();
 }
 seajs.config({
 	  base: "../",//设置js为根目录
