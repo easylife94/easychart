@@ -84,17 +84,20 @@ define(function(require,exports,module){
     function send(){
     	var editor =  $(".chat-editor");
     	var message = editor.html();  
-    	
-    	
+    	var messageHtml = "";
     	
 		if(message != ""){
-			if(!$("#reciever-switch").is(':checked')){
-				message = "<a href='javascript:void(0);' style='color:#F1C40F;'>@bot</a> " + message;
-			}
-			setMessageInnerHTML(messageFrame.html(message,"我",1,"me"));
 			websocket.send(message);
+			if(!$("#reciever-switch").is(':checked')){
+				messageHtml = "<a href='javascript:void(0);' style='color:#F1C40F;'>@bot</a> " + message;							
+				message = "@bot "+message;
+			}else{
+				messageHtml = message;
+			}
+			websocket.send(message);
+			setMessageInnerHTML(messageFrame.html(messageHtml,"我",1,"me"));
+			editor.empty();
 		}
-		editor.empty();
     }
     
     function isWindowMin() {//窗口是否最小化
