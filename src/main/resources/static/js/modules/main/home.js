@@ -6,7 +6,7 @@ define(function(require,exports,module){
 	var ChatEditor = require("../chat-editor/chat-editor");
 	var PromptMusic = require("../prompt/prompt-music.js");
 	
-	
+	var send_setting = "enter";
 	var messageFrame = new MessageFrame();
 	var notification = new Notification();
 	var chatEditor = new ChatEditor();
@@ -46,12 +46,12 @@ define(function(require,exports,module){
     websocket.onclose = function (e) { 
     	console.log(e);
         setMessageInnerHTML("close");  
-    }  
+    }; 
   
     //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。  
     window.onbeforeunload = function () {  
         websocket.close();  
-    }  
+    };  
   
     //将消息显示在网页上  
     function setMessageInnerHTML(innerHTML) {
@@ -64,16 +64,38 @@ define(function(require,exports,module){
     }  
  
     $(".chat-editor").on("keypress",function(e){
-    	if(e.keyCode == 13){
-    		var message =$(this).html();  
-    		if(message != ""){
-    			setMessageInnerHTML(messageFrame.html(message,"我",1,"me"));
-    			websocket.send(message);
-    		}
-            $(this).empty();
-            e.preventDefault();
+    	
+    	console.log(e);
+    	if(send_setting == "enter" &&  e.keyCode == 13 ){
+    		send();
+    		e.preventDefault();
+    	}else if(send_setting == "ctrlenter" && e.ctrlKey && e.keyCode  == 10){
+    		send();
+    		e.preventDefault();
+    	}
+    	 
+    });
+    $("#send-btn").click(function(){
+    	if(chatEditor.status != "no_context"){
+    		send();
     	}
     });
+    //发送消息
+    function send(){
+    	var editor =  $(".chat-editor");
+    	var message = editor.html();  
+    	
+    	
+    	
+		if(message != ""){
+			if(!$("#reciever-switch").is(':checked')){
+				message = "<a href='javascript:void(0);' style='color:#F1C40F;'>@bot</a> " + message;
+			}
+			setMessageInnerHTML(messageFrame.html(message,"我",1,"me"));
+			websocket.send(message);
+		}
+		editor.empty();
+    }
     
     function isWindowMin() {//窗口是否最小化
 		var isMin = false;
@@ -85,7 +107,17 @@ define(function(require,exports,module){
 		return isMin;
 	}
     
+    //发送快捷键设置
     $(".send-setting li").each(function(){
-    	
+    	$(this).click(function(){
+    		$(".send-setting li").each(function(){
+   			   $(this).removeClass("active");
+   		 	});
+    		 $(this).addClass("active");
+    		
+    		send_setting = $(this).find("a").attr("data-setting");
+    		console.log("设置发送快捷键：%s",send_setting);
+    		
+    	});
     });
 });

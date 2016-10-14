@@ -18,10 +18,14 @@ define(function(require,exports,module){
 		var _JOM = $(html);//jquery object model
 		
 		if(from == "sys"){
-			sender = "系统：";				
-			_JOM.find(".message-frame").removeClass("message-frame").addClass("sys-message-frame");		
-			_JOM.find(".sys-message-frame").html("<div>"+sender+message+"</div>");
-			return _JOM.html();
+			if(message.type == 1){
+				sender = "系统：";
+				_JOM.find(".message-frame").removeClass("message-frame").addClass("sys-message-frame");		
+				_JOM.find(".sys-message-frame").html("<span>"+sender+message.content.user+"加入聊天</span>");
+				$(".user-num .num").text(message.content.total);
+				
+				return _JOM.html();
+			}
 		}
 			
 		_JOM.find(".message-frame-sender").html(sender==null||sender==""?"游客":sender);				
