@@ -77,6 +77,7 @@ body{
 	padding:5px 10px 5px 10px;
 	overflow: auto;
 	border-radius: 4px;
+	outline: none;
 }
 .placeholder{
 	
@@ -100,7 +101,7 @@ body{
     text-align: center;
 }
 .reciever-switch .bootstrap-switch{
-	margin-top:-5px;
+	margin-top:-2px;
 	border-bottom-left-radius: 20px;
 	border-bottom-right-radius: 20px;
 }

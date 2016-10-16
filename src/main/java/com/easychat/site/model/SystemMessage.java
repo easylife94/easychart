@@ -5,7 +5,7 @@ import java.util.Map;
 public class SystemMessage {
 	
 	public static final int TYPE_USER_JOIN = 1;
-	
+	public static final int TYPE_USER_OUT=2;
 	private Map content;
 	private int type;
 	
